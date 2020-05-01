@@ -1,0 +1,9 @@
+{
+  "DataBase" : {
+    "NAME" : "ptubus",
+    "USER" : "DB_ID",
+    "PASSWORD" : "DB_PW",
+    "HOST" : "rokong.me",
+    "PORT" : "3306"
+  }
+}
