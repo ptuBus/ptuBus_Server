@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #Make with startapp command
     'ptuBusServer',
+    'ptuBusCrawling',
     #Django Library
     'rest_framework'
 
