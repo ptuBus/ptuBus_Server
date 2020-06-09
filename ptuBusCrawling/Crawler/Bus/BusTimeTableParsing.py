@@ -3,7 +3,7 @@ from urllib import parse, request
 from Util.SendSlcakMsg import SendSlackMeg
 import sys
 
-class BusServiceTimeParsing:
+class BusTimeTableParsing:
     def __init__ (self, data):
         self.pData = data
         self.apiKey = 'mxl46U1g52x6aVOUX/p969Zbtq9EZmboho4Jp5WiUlQ'

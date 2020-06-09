@@ -1,10 +1,7 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from rest_framework.renderers import JSONRenderer
-from rest_framework.response import Response
 from django.views import View
 from .models import *
-from ptuBusCrawling.Crawling.subway.SubwayParsing import SubwayParsing
-from ptuBusCrawling.Crawling.school.SchoolParsing import SchoolParsing
 from ptuBusCrawling.serializers import SubwaySerializer, SchoolBusSerializer
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
