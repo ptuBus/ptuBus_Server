@@ -18,7 +18,7 @@ Markdown==3.2.1
 microfs==1.4.3
 multidict==4.7.6
 mysqlclient==1.4.6
-protobuf==3.12.3
+protobuf
 pseudo-microbit==1.8
 PyGithub==1.51
 PyJWT==1.7.1
