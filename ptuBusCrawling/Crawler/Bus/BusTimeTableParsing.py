@@ -1,6 +1,6 @@
 import json
 from urllib import parse, request
-from Util.SendSlcakMsg import SendSlackMeg
+from ptuBusCrawling.Crawler.Util.SendSlcakMsg import SendSlackMeg
 import sys
 
 class BusTimeTableParsing:

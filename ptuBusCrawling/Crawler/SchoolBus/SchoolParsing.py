@@ -1,4 +1,4 @@
-import Util.WebParsing as wp
+from ptuBusCrawling.Crawler.Util.WebParsing import WebParsing
 
 class SchoolParsing:
     def __init__(self):

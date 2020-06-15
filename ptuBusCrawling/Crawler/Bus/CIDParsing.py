@@ -1,9 +1,9 @@
-import Util.WebParsing as wp
+from ptuBusCrawling.Crawler.Util.WebParsing import WebParsing
 
 class CIDParsing:
     def __init__(self):
         url = 'https://lab.odsay.com/guide/releaseReference#CID'
-        self.wp = wp.WebParsing(url)
+        self.wp = WebParsing(url)
 
     def makeDict(self, all_list):
         temp = []

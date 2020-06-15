@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from rest_framework.renderers import JSONRenderer
 from django.views import View
-from .models import *
-from ptuBusCrawling.serializers import SubwaySerializer, SchoolBusSerializer
 import ssl
+from ptuBusCrawling.Crawler.Subway.SubwayParsing import SubwayParsing
+from ptuBusCrawling.models.Subway.SubwayTimeTableModel import SubwayTimeTableModel
+from ptuBusCrawling.Serializer.Subway.SubwayTimeTableSerializer import SubwayTimeTableSerializer
 ssl._create_default_https_context = ssl._create_unverified_context
 
 class JSONResponse(HttpResponse):
@@ -16,11 +17,11 @@ class SubwayListView(View):
     def get(self, request):
         count = 1
         subway = SubwayParsing()
-        SubwayList.objects.all().delete()
+        SubwayTimeTableModel.objects.all().delete()
         data = subway.parsing()
         for dailyList in data:
             for table in dailyList:
-                SubwayList(
+                SubwayTimeTableModel(
                     pk = count,
                     arrTime = table['arrTime'],
                     dailyTypeCode=table['dailyTypeCode'],
@@ -30,28 +31,29 @@ class SubwayListView(View):
                     ExpressType=int(table['ExpressType']),
                     ).save()
                 count += 1
-        snippets = SubwayList.objects.all()
-        serializer = SubwaySerializer(snippets, many=True)
+        snippets = SubwayTimeTableModel.objects.all()
+        print (snippets)
+        serializer = SubwayTimeTableSerializer(snippets, many=True)
         return JSONResponse(serializer.data, status=201)
-
-class SchoolListView(View):
-    def get(self, request):
-        count = 1
-        school = SchoolParsing()
-        SchoolBusList.objects.all().delete()
-        data = school.parsingData()
-        for dailyList in data:
-            for table in dailyList:
-                SchoolBusList(
-                    id = count,
-                    arrTime = table['arrTime'],
-                    startStationID = table['startStationID'],
-                    startStationNm = table['startStationNm'],
-                    endStationID = table['endStationID'],
-                    endStationNm = table['endStationNm'],
-                    upDownTypeCode = table['upDownTypeCode'],
-                    ).save()
-                count += 1
-        snippets = SchoolBusList.objects.all()
-        serializer = SchoolBusSerializer(snippets, many=True)
-        return JSONResponse(serializer.data, status=201)
+#
+# class SchoolListView(View):
+#     def get(self, request):
+#         count = 1
+#         school = SchoolParsing()
+#         SchoolBusList.objects.all().delete()
+#         data = school.parsingData()
+#         for dailyList in data:
+#             for table in dailyList:
+#                 SchoolBusList(
+#                     id = count,
+#                     arrTime = table['arrTime'],
+#                     startStationID = table['startStationID'],
+#                     startStationNm = table['startStationNm'],
+#                     endStationID = table['endStationID'],
+#                     endStationNm = table['endStationNm'],
+#                     upDownTypeCode = table['upDownTypeCode'],
+#                     ).save()
+#                 count += 1
+#         snippets = SchoolBusList.objects.all()
+#         serializer = SchoolBusSerializer(snippets, many=True)
+#         return JSONResponse(serializer.data, status=201)

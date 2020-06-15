@@ -95,6 +95,7 @@ DATABASES = {
         'PASSWORD' : SettingJson["DataBase"]["PASSWORD"],
         'HOST' : SettingJson["DataBase"]["HOST"],
         'PORT' : SettingJson["DataBase"]["PORT"],
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
 
