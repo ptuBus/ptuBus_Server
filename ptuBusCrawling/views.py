@@ -3,22 +3,21 @@ from rest_framework.renderers import JSONRenderer
 from django.views import View
 import ssl
 from ptuBusCrawling.Crawler.Subway.SubwayParsing import SubwayParsing
-from ptuBusCrawling.models.Subway.SubwayTimeTableModel import SubwayTimeTableModel
-from ptuBusCrawling.Serializer.Subway.SubwayTimeTableSerializer import SubwayTimeTableSerializer
+from .models import *
+from .serializers import *
 ssl._create_default_https_context = ssl._create_unverified_context
 
 class JSONResponse(HttpResponse):
     def __init__(self, data, **kwargs):
         content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
+        kwargs['content_type'] = 'application/json; charset=utf-8'
         super(JSONResponse, self).__init__(content, **kwargs)
 
 class SubwayListView(View):
     def get(self, request):
         count = 1
-        subway = SubwayParsing()
         SubwayTimeTableModel.objects.all().delete()
-        data = subway.parsing()
+        data = SubwayParsing().parsing()
         for dailyList in data:
             for table in dailyList:
                 SubwayTimeTableModel(
@@ -35,6 +34,7 @@ class SubwayListView(View):
         print (snippets)
         serializer = SubwayTimeTableSerializer(snippets, many=True)
         return JSONResponse(serializer.data, status=201)
+
 #
 # class SchoolListView(View):
 #     def get(self, request):
