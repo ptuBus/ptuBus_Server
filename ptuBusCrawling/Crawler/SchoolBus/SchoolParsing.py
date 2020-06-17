@@ -3,7 +3,7 @@ from ptuBusCrawling.Crawler.Util.WebParsing import WebParsing
 class SchoolParsing:
     def __init__(self):
         url = "https://www.ptu.ac.kr/contents/www/cor/traffic_2.html"
-        self.wp = wp.WebParsing(url)
+        self.wp = WebParsing(url)
 
     def cleanList(self, all_list):
         pDataList = []
