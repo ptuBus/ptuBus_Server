@@ -10,7 +10,7 @@ class SchoolParsing:
         toSchool = []
         toSubway = []
 
-        all_list = ''.join(all_list).split()
+        all_list = ' '.join(all_list).split()
         for i in range(len(all_list)):
             if ((i % 4) < 2):
                 toSchool.append(all_list[i].zfill(5))
@@ -50,9 +50,3 @@ class SchoolParsing:
         for i in range(2, len(tr_list)):
             all_list.append(tr_list[i].text.strip())
         return self.makeDict(self.cleanList(all_list))
-
-
-
-
-
-
