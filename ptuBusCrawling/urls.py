@@ -1,9 +1,12 @@
 from django.urls import path
-from . import views
+from .Views.Subway.SubwayListView import SubwayListView
+from .Views.SchoolBus.SchooBuslListView import SchooBuslListView
+from .Views.Bus.BusTerminalListView import BusTerminalListView
+from .Views.Bus.BusTimeTableListView import BusTimeTableListView
 
 urlpatterns = [
-    path('Subway/', views.SubwayListView.as_view()),
-    path('SchoolBus/', views.SchooBuslListView.as_view()),
-    path('BusTerminal/', views.BusTerminalListView.as_view()),
-    path('BusTimeTable/', views.BusTimeTableListView.as_view()),
+    path('Subway/', SubwayListView.as_view()),
+    path('SchoolBus/', SchooBuslListView.as_view()),
+    path('BusTerminal/', BusTerminalListView.as_view()),
+    path('BusTimeTable/', BusTimeTableListView.as_view()),
 ]
