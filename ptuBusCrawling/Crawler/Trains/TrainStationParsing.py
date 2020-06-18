@@ -52,3 +52,6 @@ class TrainStationParsing:
         for result in results:
             temp.append(self.makeDict(startStationName, startStationID, result['stationName'], result['stationID']))
         return temp
+
+if __name__ == "__main__":
+    print (TrainStationParsing().parsing())

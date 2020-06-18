@@ -60,3 +60,6 @@ class BusTerminalParsing:
                         temp.append(self.makeDict(startStationID, startStationName, result['stationID'],
                             result['stationName'], isExpress))
             return temp
+
+if __name__ == "__main__":
+    print (BusTerminalParsing().parsing())

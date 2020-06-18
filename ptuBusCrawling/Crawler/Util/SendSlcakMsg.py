@@ -12,3 +12,6 @@ class SendSlackMeg:
                 channel='#server',
                 text=time + "\n" + msg)
         assert response["message"]["text"] == time + "\n" + msg
+
+if __name__ == "__main__":
+    SendSlackMeg().sendMsg("Test Code")

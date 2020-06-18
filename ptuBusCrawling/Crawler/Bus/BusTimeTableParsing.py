@@ -1,8 +1,6 @@
 import json
 from urllib import parse, request
 from ptuBusCrawling.Crawler.Util.SendSlcakMsg import SendSlackMeg
-import sys
-from ptuBusCrawling.Crawler.Bus.BusTerminalParsing import BusTerminalParsing
 
 class BusTimeTableParsing:
     def __init__ (self, data):
@@ -85,3 +83,13 @@ class BusTimeTableParsing:
                                           schedule,
                                           nightschedule))
         return temp
+
+if __name__ == "__main__":
+    if __package__ is None:
+        import sys
+        from os import path
+        sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+        from BusTerminalParsing import BusTerminalParsing
+    else:
+        from .BusTerminalParsing import BusTerminalParsing
+    print (BusTimeTableParsing(BusTerminalParsing().parsing()).parsing())

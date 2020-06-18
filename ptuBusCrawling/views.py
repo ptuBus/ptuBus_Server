@@ -2,10 +2,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 import ssl
-from ptuBusCrawling.Crawler.Subway.SubwayParsing import SubwayParsing
-from ptuBusCrawling.Crawler.SchoolBus.SchoolParsing import SchoolParsing
-from ptuBusCrawling.Crawler.Bus.BusTerminalParsing import BusTerminalParsing
-from ptuBusCrawling.Crawler.Bus.BusTimeTableParsing import BusTimeTableParsing
+from ptuBusCrawling.Crawler import *
 from .serializers import *
 ssl._create_default_https_context = ssl._create_unverified_context
 

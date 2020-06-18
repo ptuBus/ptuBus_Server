@@ -69,3 +69,6 @@ class SubwayParsing:
                     typeList.extend(self.sortDict(jData[i], dailyType, wayCode))
             temp.append(typeList)
         return temp
+
+if __name__ == "__main__":
+    print (SubwayParsing().parsing())

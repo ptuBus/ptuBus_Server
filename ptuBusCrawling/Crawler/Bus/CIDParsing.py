@@ -22,3 +22,6 @@ class CIDParsing:
         for i in range(len(tr_list)):
             all_list.append(tr_list[i].text.strip())
         return self.makeDict(all_list)
+
+if __name__ == "__main__":
+    print (CIDParsing().parsingData())
