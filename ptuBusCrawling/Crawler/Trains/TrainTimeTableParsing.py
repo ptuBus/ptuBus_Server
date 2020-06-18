@@ -1,7 +1,6 @@
 from urllib import parse, request
 import json
 from ptuBusCrawling.Crawler.Util.SendSlcakMsg import SendSlackMeg
-import sys
 
 class TrainTimeTableParsing:
     def __init__(self, data):
@@ -40,9 +39,9 @@ class TrainTimeTableParsing:
 
     def parsing(self):
         temp = []
-        for pData in self.pData:
-            query = [('apiKey', self.apiKey), ('startStationID', pData['startStationID']),
-                     ('endStationID', pData['endStationID'])]
+        for parsingData in self.pData:
+            query = [('apiKey', self.apiKey), ('startStationID', parsingData['startStationID']),
+                     ('endStationID', parsingData['endStationID'])]
             data = self.openURL(query)
             rDD = self.checkError(json.loads(data))
             startStationName = rDD["result"]["startStationName"]
@@ -56,7 +55,7 @@ class TrainTimeTableParsing:
                                           result['trainClass'], result['departureTime'], result['arrivalTime'],
                                           result['wasteTime']
                                           , result['runDay']))
-            return temp
+        return temp
 
 if __name__ == "__main__":
     if __package__ is None:
@@ -66,4 +65,4 @@ if __name__ == "__main__":
         from TrainStationParsing import TrainStationParsing
     else:
         from .TrainStationParsing import TrainStationParsing
-    print (TrainTimeTableParsing(TrainStationParsing().parsing()).parsing())
+    sample = TrainTimeTableParsing(TrainStationParsing().parsing()).parsing()
