@@ -1,5 +1,6 @@
 from slack import WebClient
 from datetime import datetime
+import getpass
 
 class SendSlackMeg:
     def __init__(self):
@@ -10,8 +11,7 @@ class SendSlackMeg:
         time = "{}/{}/{} {}:{}:{}".format(now.year, now.month, now.day, now.hour, now.minute, now.second)
         response = self.client.chat_postMessage(
                 channel='#server',
-                text=time + "\n" + msg)
-        assert response["message"]["text"] == time + "\n" + msg
+                text=time + "\n" + msg + "\n" + getpass.getuser())
 
 if __name__ == "__main__":
     SendSlackMeg().sendMsg("Test Code")
