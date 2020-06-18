@@ -1,22 +1,15 @@
-from django.http import HttpResponse
-from rest_framework.renderers import JSONRenderer
-from django.views import View
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
 import ssl
 from ptuBusCrawling.Crawler.Subway.SubwayParsing import SubwayParsing
 from ptuBusCrawling.Crawler.SchoolBus.SchoolParsing import SchoolParsing
 from ptuBusCrawling.Crawler.Bus.BusTerminalParsing import BusTerminalParsing
 from ptuBusCrawling.Crawler.Bus.BusTimeTableParsing import BusTimeTableParsing
-from .models import *
 from .serializers import *
 ssl._create_default_https_context = ssl._create_unverified_context
 
-class JSONResponse(HttpResponse):
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json; charset=utf-8'
-        super(JSONResponse, self).__init__(content, **kwargs)
-
-class SubwayListView(View):
+class SubwayListView(APIView):
     def get(self, request):
         count = 1
         SubwayTimeTableModel.objects.all().delete()
@@ -36,10 +29,9 @@ class SubwayListView(View):
         snippets = SubwayTimeTableModel.objects.all()
         print (snippets)
         serializer = SubwayTimeTableSerializer(snippets, many=True)
-        return JSONResponse(serializer.data, status=201)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-
-class SchooBuslListView(View):
+class SchooBuslListView(APIView):
     def get(self, request):
         count = 1
         school = SchoolParsing()
@@ -59,10 +51,9 @@ class SchooBuslListView(View):
                 count += 1
         snippets = SchoolBusTimeTableModel.objects.all()
         serializer = SchoolBusTimeTableSerializer(snippets, many=True)
-        return JSONResponse(serializer.data, status=201)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-
-class BusTerminalListView(View):
+class BusTerminalListView(APIView):
     def get(self, request):
         count = 1
         BusTerminalModel.objects.all().delete()
@@ -80,10 +71,9 @@ class BusTerminalListView(View):
                 count += 1
         snippets = BusTerminalModel.objects.all()
         serializer = BusTerminalSerializer(snippets, many=True)
-        return JSONResponse(serializer.data, status=201)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-
-class BusTimeTableListView(View):
+class BusTimeTableListView(APIView):
     def get(self, request):
         count = 1
         Bus = BusTerminalParsing()
@@ -107,4 +97,4 @@ class BusTimeTableListView(View):
                 count += 1
         snippets = BusTimeTableModel.objects.all()
         serializer = BusTimeTableSerializer(snippets, many=True)
-        return JSONResponse(serializer.data, status=201)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)

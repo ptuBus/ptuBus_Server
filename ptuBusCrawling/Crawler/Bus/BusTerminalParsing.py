@@ -5,7 +5,7 @@ import sys
 
 class BusTerminalParsing:
     def __init__(self, CID='1220'):
-        apiKey = 'PNsB3fNkDcbHCx6LK4YWprIVdIhoyc8EL7W1b8v1jyE'
+        apiKey = 'mxl46U1g52x6aVOUX/p969Zbtq9EZmboho4Jp5WiUlQ'
         self.url = [{'url' : 'https://api.odsay.com/v1/api/intercityBusTerminals?', 'isExpress': 0},
                     {'url' : 'https://api.odsay.com/v1/api/expressBusTerminals?', 'isExpress': 1}]
         self.query = [('apiKey', apiKey), ('CID', CID)]

@@ -7,7 +7,7 @@ from ptuBusCrawling.Crawler.Bus.BusTerminalParsing import BusTerminalParsing
 class BusTimeTableParsing:
     def __init__ (self, data):
         self.pData = data
-        self.apiKey = 'PNsB3fNkDcbHCx6LK4YWprIVdIhoyc8EL7W1b8v1jyE'
+        self.apiKey = 'mxl46U1g52x6aVOUX/p969Zbtq9EZmboho4Jp5WiUlQ'
         self.url = ['https://api.odsay.com/v1/api/intercityServiceTime?',
                     'https://api.odsay.com/v1/api/expressServiceTime?']
         self.msg = SendSlackMeg()
