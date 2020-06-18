@@ -58,17 +58,16 @@ class BusTerminalListView(APIView):
         count = 1
         BusTerminalModel.objects.all().delete()
         data = BusTerminalParsing().parsing()
-        for dailyList in data:
-            for table in dailyList:
-                BusTerminalModel(
-                    id = count,
-                    startStationID = table['startStationID'],
-                    startStationName = table['startStationName'],
-                    endStationID = table['endStationID'],
-                    endStationName = table['endStationName'],
-                    isExpress = int(table['isExpress']),
-                    ).save()
-                count += 1
+        for table in data:
+            BusTerminalModel(
+                id = count,
+                startStationID = table['startStationID'],
+                startStationName = table['startStationName'],
+                endStationID = table['endStationID'],
+                endStationName = table['endStationName'],
+                isExpress = int(table['isExpress']),
+                ).save()
+            count += 1
         snippets = BusTerminalModel.objects.all()
         serializer = BusTerminalSerializer(snippets, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -79,22 +78,21 @@ class BusTimeTableListView(APIView):
         Bus = BusTerminalParsing()
         BusTimeTableModel.objects.all().delete()
         data = BusTimeTableParsing(Bus.parsing()).parsing()
-        for dailyList in data:
-            for table in dailyList:
-                BusTimeTableModel(
-                    id = count,
-                    startStationID = table['startStationID'],
-                    startStationName = table['startStationName'],
-                    endStationID = table['endStationID'],
-                    endStationName = table['endStationName'],
-                    wasteTime = table['wasteTime'],
-                    normalFare = table['normalFare'],
-                    specialFare = table['specialFare'],
-                    nightFare = table['nightFare'],
-                    schedule = table['schedule'],
-                    nightschedule = table['nightschedule'],
-                    ).save()
-                count += 1
+        for table in data:
+            BusTimeTableModel(
+                id = count,
+                startStationID = table['startStationID'],
+                startStationName = table['startStationName'],
+                endStationID = table['endStationID'],
+                endStationName = table['endStationName'],
+                wasteTime = table['wasteTime'],
+                normalFare = table['normalFare'],
+                specialFare = table['specialFare'],
+                nightFare = table['nightFare'],
+                schedule = table['schedule'],
+                nightschedule = table['nightschedule'],
+                ).save()
+            count += 1
         snippets = BusTimeTableModel.objects.all()
         serializer = BusTimeTableSerializer(snippets, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
