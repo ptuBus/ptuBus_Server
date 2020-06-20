@@ -1,6 +1,6 @@
 import ssl
 from .Subway.SubwayListView import SubwayListView
-from .SchoolBus.SchooBuslListView import SchooBuslListView
+from .SchoolBus.SchoolBusListView import SchoolBusListView
 from .Bus.BusTerminalListView import BusTerminalListView
 from .Bus.BusTimeTableListView import BusTimeTableListView
 from .Train.TrainStationListView import TrainStationListView
