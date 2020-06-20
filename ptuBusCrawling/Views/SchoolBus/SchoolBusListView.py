@@ -5,7 +5,7 @@ from ptuBusCrawling.Crawler import SchoolParsing
 from ptuBusCrawling.Serializers import SchoolBusTimeTableSerializer
 from ptuBusCrawling.Models import SchoolBusTimeTableModel
 
-class SchooBuslListView(APIView):
+class SchoolBusListView(APIView):
     def get(self, request):
         count = 1
         school = SchoolParsing()
