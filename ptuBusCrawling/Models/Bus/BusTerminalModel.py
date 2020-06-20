@@ -9,4 +9,4 @@ class BusTerminalModel(models.Model):
     isExpress = models.IntegerField()
 
     class Meta:
-        db_table = 'BusTerminalModel'
+        db_table = 'BusTerminal'

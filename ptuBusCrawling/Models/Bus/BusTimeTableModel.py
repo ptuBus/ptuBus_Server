@@ -14,4 +14,4 @@ class BusTimeTableModel(models.Model):
     nightschedule = models.CharField(max_length = 100)
 
     class Meta:
-        db_table = 'BusTimeTableModel'
+        db_table = 'BusTimeTable'
