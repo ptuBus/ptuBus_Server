@@ -14,10 +14,10 @@ class BusTimeTableListView(APIView):
         for table in data:
             BusTimeTableModel(
                 id = count,
+                startStationName=table['startStationName'],
                 startStationID = table['startStationID'],
-                startStationName = table['startStationName'],
+                endStationName =table['endStationName'],
                 endStationID = table['endStationID'],
-                endStationName = table['endStationName'],
                 wasteTime = table['wasteTime'],
                 normalFare = table['normalFare'],
                 specialFare = table['specialFare'],

@@ -4,4 +4,4 @@ from ptuBusCrawling.Models import SubwayTimeTableModel
 class SubwayTimeTableSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubwayTimeTableModel
-        fields = ('id', 'arrTime', 'dailyTypeCode', 'subwayStationNm', 'endSubwayStationNm', 'upDownTypeCode', 'ExpressType')
+        fields = ('id', 'startStationName', 'endStationName', 'dailyTypeCode', 'upDownTypeCode', 'arrTime', 'isExpress')

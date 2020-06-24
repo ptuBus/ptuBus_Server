@@ -13,10 +13,10 @@ class TrainStationListView(APIView):
         for table in data:
             TrainStationModel(
                 id = count,
-                startStationID = table['startStationID'],
                 startStationName = table['startStationName'],
+                startStationID = table['startStationID'],
+                endStationName=table['endStationName'],
                 endStationID = table['endStationID'],
-                endStationName = table['endStationName'],
             ).save()
             count += 1
         snippets = TrainStationModel.objects.all()

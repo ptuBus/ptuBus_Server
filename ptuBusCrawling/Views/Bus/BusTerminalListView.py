@@ -13,10 +13,10 @@ class BusTerminalListView(APIView):
         for table in data:
             BusTerminalModel(
                 id = count,
+                startStationName=table['startStationName'],
                 startStationID = table['startStationID'],
-                startStationName = table['startStationName'],
+                endStationName=table['endStationName'],
                 endStationID = table['endStationID'],
-                endStationName = table['endStationName'],
                 isExpress = int(table['isExpress']),
                 ).save()
             count += 1

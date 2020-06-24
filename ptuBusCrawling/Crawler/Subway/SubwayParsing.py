@@ -27,10 +27,10 @@ class SubwayParsing:
     def makeDict(self, hour, min, dailyType, wayCode, ifExp):
         startIndex = min.find('(')
         newWord = min[:startIndex]
-        ListStr = ["arrTime", "dailyTypeCode", "subwayStationNm", "endSubwayStationNm", "upDownTypeCode", "ExpressType"]
+        ListStr = ["startStationName", "endStationName", "dailyTypeCode", "upDownTypeCode", "arrTime", "isExpress"]
         arrTime = str(hour).zfill(2) + ":" + str(newWord)
         endStation = str(min[startIndex + 1: -1])
-        dList = [arrTime, dailyType, self.stationNm, endStation, wayCode, ifExp]
+        dList = [self.stationNm, endStation, dailyType, wayCode, arrTime, ifExp]
         return dict(zip(ListStr, dList))
 
     def sortDict(self, jData, dailyType, wayCode):

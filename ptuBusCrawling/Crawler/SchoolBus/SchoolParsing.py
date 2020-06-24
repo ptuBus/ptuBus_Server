@@ -27,17 +27,17 @@ class SchoolParsing:
         temp = []
         toSchool = []
         toSubway = []
-        ListStr = ["arrTime", "startStationID", "startStationNm", "endStationID", "endStationNm", "upDownTypeCode"]
+        ListStr = ["startStationName", "startStationID", "endStationName", "endStationID", "arrTime", "upDownTypeCode"]
         for i in range(len(pDataList)):
             #상행
             if i == 0:
                 for j in range(len(pDataList[0])):
-                    dList = [str(pDataList[0][j]), '0', '롯데', '1', '평택대학교', 'U']
+                    dList = ['롯데', '0', '평택대학교', '1', str(pDataList[0][j]), 'U']
                     zipbObj = zip(ListStr, dList)
                     toSchool.append(dict(zipbObj))
             elif i == 1:
                 for j in range(len(pDataList[1])):
-                    dList = [str(pDataList[1][j]), '1', '평택대학교', '0', '롯데', 'D']
+                    dList = ['평택대학교', '1', '롯데', '0', str(pDataList[1][j]), 'D']
                     zipbObj = zip(ListStr, dList)
                     toSubway.append(dict(zipbObj))
         temp.append(toSchool)
