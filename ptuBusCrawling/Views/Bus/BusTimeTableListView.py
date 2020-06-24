@@ -24,6 +24,7 @@ class BusTimeTableListView(APIView):
                 nightFare = table['nightFare'],
                 schedule = table['schedule'],
                 nightschedule = table['nightschedule'],
+                isExpress = table['isExpress'],
                 ).save()
             count += 1
         snippets = BusTimeTableModel.objects.all()
