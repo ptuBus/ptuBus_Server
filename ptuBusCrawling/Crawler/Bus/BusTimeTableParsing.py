@@ -24,10 +24,11 @@ class BusTimeTableParsing:
         return ''.join(replaceAll).split()
 
     def makeDict(self, startStationID, startStationName, endStationID, endStationName, wasteTime, normalFare, specialFare ,nightFare,
-                 schedule, nightschedule):
+                 schedule, nightschedule, isExpress):
         ListStr = ["startStationID", "startStationName", "endStationID", "endStationName", "wasteTime", "normalFare", "specialFare",
-                   "nightFare", "schedule", "nightschedule"]
-        dList = [startStationID, startStationName, endStationID, endStationName, wasteTime, normalFare, specialFare, nightFare, schedule ,nightschedule]
+                   "nightFare", "schedule", "nightschedule", "isExpress"]
+        dList = [startStationID, startStationName, endStationID, endStationName, wasteTime, normalFare, specialFare,
+                 nightFare, schedule ,nightschedule, isExpress]
         return dict(zip(ListStr, dList))
 
     def checkError(self, data):
@@ -61,6 +62,7 @@ class BusTimeTableParsing:
             endStationID = pData["endStationID"]
             wasteTime = rDD["result"]["station"][0]['wasteTime']
             normalFare = rDD["result"]["station"][0]['normalFare']
+            isExpress = pData['isExpress']
             if (special == 0):
                 specialFare = 0
             elif (special == 1):
@@ -81,7 +83,8 @@ class BusTimeTableParsing:
                                           specialFare,
                                           nightFare,
                                           schedule,
-                                          nightschedule))
+                                          nightschedule,
+                                          isExpress))
         return temp
 
 if __name__ == "__main__":

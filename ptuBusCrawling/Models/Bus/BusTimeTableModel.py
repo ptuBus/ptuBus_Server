@@ -12,6 +12,7 @@ class BusTimeTableModel(models.Model):
     nightFare = models.CharField(max_length = 100)
     schedule = models.CharField(max_length = 100)
     nightschedule = models.CharField(max_length = 100)
+    isExpress = models.IntegerField()
 
     class Meta:
         db_table = 'BusTimeTable'
