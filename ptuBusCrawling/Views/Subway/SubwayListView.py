@@ -13,13 +13,13 @@ class SubwayListView(APIView):
         for dailyList in data:
             for table in dailyList:
                 SubwayTimeTableModel(
-                    pk = count,
-                    arrTime = table['arrTime'],
+                    id = count,
+                    startStationName=table['startStationName'],
+                    endStationName=table['endStationName'],
                     dailyTypeCode=table['dailyTypeCode'],
-                    subwayStationNm=table['subwayStationNm'],
-                    endSubwayStationNm=table['endSubwayStationNm'],
                     upDownTypeCode=table['upDownTypeCode'],
-                    ExpressType=int(table['ExpressType']),
+                    arrTime = table['arrTime'],
+                    isExpress = int(table['isExpress']),
                     ).save()
                 count += 1
         snippets = SubwayTimeTableModel.objects.all()

@@ -25,9 +25,9 @@ class BusTimeTableParsing:
 
     def makeDict(self, startStationID, startStationName, endStationID, endStationName, wasteTime, normalFare, specialFare ,nightFare,
                  schedule, nightschedule, isExpress):
-        ListStr = ["startStationID", "startStationName", "endStationID", "endStationName", "wasteTime", "normalFare", "specialFare",
+        ListStr = ["startStationName", "startStationID", "endStationName", "endStationID", "wasteTime", "normalFare", "specialFare",
                    "nightFare", "schedule", "nightschedule", "isExpress"]
-        dList = [startStationID, startStationName, endStationID, endStationName, wasteTime, normalFare, specialFare,
+        dList = [startStationName, startStationID, endStationName, endStationID, wasteTime, normalFare, specialFare,
                  nightFare, schedule ,nightschedule, isExpress]
         return dict(zip(ListStr, dList))
 

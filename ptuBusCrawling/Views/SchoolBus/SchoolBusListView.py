@@ -15,13 +15,13 @@ class SchoolBusListView(APIView):
             for table in dailyList:
                 SchoolBusTimeTableModel(
                     id = count,
-                    arrTime = table['arrTime'],
+                    startStationName=table['startStationName'],
                     startStationID = table['startStationID'],
-                    startStationNm = table['startStationNm'],
+                    endStationName=table['endStationName'],
                     endStationID = table['endStationID'],
-                    endStationNm = table['endStationNm'],
+                    arrTime=table['arrTime'],
                     upDownTypeCode = table['upDownTypeCode'],
-                    ).save()
+                ).save()
                 count += 1
         snippets = SchoolBusTimeTableModel.objects.all()
         serializer = SchoolBusTimeTableSerializer(snippets, many=True)
