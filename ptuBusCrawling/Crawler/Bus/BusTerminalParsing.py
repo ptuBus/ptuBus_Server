@@ -6,8 +6,7 @@ import sys
 class BusTerminalParsing:
     def __init__(self, CID='1220'):
         apiKey = 'mxl46U1g52x6aVOUX/p969Zbtq9EZmboho4Jp5WiUlQ'
-        self.url = [{'url' : 'https://api.odsay.com/v1/api/intercityBusTerminals?', 'isExpress': 0},
-                    {'url' : 'https://api.odsay.com/v1/api/expressBusTerminals?', 'isExpress': 1}]
+        self.url = [{'url' : 'https://api.odsay.com/v1/api/intercityBusTerminals?', 'isExpress': 0}, {'url' : 'https://api.odsay.com/v1/api/expressBusTerminals?', 'isExpress': 1}]
         self.query = [('apiKey', apiKey), ('CID', CID)]
         self.msg = SendSlackMeg()
 
@@ -20,9 +19,9 @@ class BusTerminalParsing:
         response = request.urlopen(request_url)
         return response.read().decode('utf-8')
 
-    def makeDict(self, startStationID, startStationName,endStationID, endStationName, isExpress):
-        ListStr = ["startStationID", "startStationName", "endStationID", "endStationName", "isExpress"]
-        dList = [startStationID, startStationName, endStationID, endStationName, isExpress]
+    def makeDict(self, startStationID, startStationName, endStationID, endStationName, isExpress):
+        ListStr = ["startStationName", "startStationID", "endStationName", "endStationID", "isExpress"]
+        dList = [startStationName, startStationID, endStationName, endStationID, isExpress]
         return dict(zip(ListStr, dList))
 
     def checkError(self, data):
@@ -59,7 +58,7 @@ class BusTerminalParsing:
                     for result in results:
                         temp.append(self.makeDict(startStationID, startStationName, result['stationID'],
                             result['stationName'], isExpress))
-            return temp
+        return temp
 
 if __name__ == "__main__":
     print (BusTerminalParsing().parsing())
