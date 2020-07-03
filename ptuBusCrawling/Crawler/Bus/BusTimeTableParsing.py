@@ -41,6 +41,15 @@ class BusTimeTableParsing:
         else:
             return data
 
+    def min2hour(self, time):
+        if (time.find(':') == -1):
+            time = int(time)
+            hour = time // 60
+            min = time % 60
+            return str(hour).zfill(2) + ":" + str(min).zfill(2)
+        else:
+            return time
+
     def parsing(self):
         temp = []
         for pData in self.pData:
@@ -59,7 +68,7 @@ class BusTimeTableParsing:
             startStationName = pData['startStationName']
             endStationName = pData["endStationName"]
             endStationID = pData["endStationID"]
-            wasteTime = rDD["result"]["station"][0]['wasteTime']
+            wasteTime = self.min2hour(rDD["result"]["station"][0]['wasteTime'])
             normalFare = rDD["result"]["station"][0]['normalFare']
             if (special == 0):
                 specialFare = 0
