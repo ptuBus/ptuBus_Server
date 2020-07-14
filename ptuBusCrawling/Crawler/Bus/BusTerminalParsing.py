@@ -1,6 +1,7 @@
 import json
 from urllib import parse, request
 from ptuBusCrawling.Crawler.Util.SendSlcakMsg import SendSlackMeg
+from ptuBusCrawling.Models import BusTerminalModel
 import sys
 
 class BusTerminalParsing:
@@ -18,11 +19,6 @@ class BusTerminalParsing:
         request_url = request.Request(url)
         response = request.urlopen(request_url)
         return response.read().decode('utf-8')
-
-    def makeDict(self, startStationID, startStationName, endStationID, endStationName, isExpress):
-        ListStr = ["startStationName", "startStationID", "endStationName", "endStationID", "isExpress"]
-        dList = [startStationName, startStationID, endStationName, endStationID, isExpress]
-        return dict(zip(ListStr, dList))
 
     def checkError(self, data):
         if (('error' in data) == True):
@@ -43,7 +39,7 @@ class BusTerminalParsing:
             return data
 
     def parsing(self):
-        temp = []
+        count = 1
         for Type in self.url:
             data = self.openURL(Type['url'])
             rDD = self.checkError(json.loads(data))
@@ -56,9 +52,15 @@ class BusTerminalParsing:
                     startStationName = rDD["result"][i]['stationName']
                     results = rDD["result"][i]['destinationTerminals']
                     for result in results:
-                        temp.append(self.makeDict(startStationID, startStationName, result['stationID'],
-                            result['stationName'], isExpress))
-        return temp
+                        BusTerminalModel(
+                            id = count,
+                            startStationName = startStationName,
+                            startStationID = startStationID,
+                            endStationName = result['stationName'],
+                            endStationID = result['stationID'],
+                            isExpress = int(isExpress)
+                        ).save()
+                        count += 1
 
 if __name__ == "__main__":
     print (BusTerminalParsing().parsing())

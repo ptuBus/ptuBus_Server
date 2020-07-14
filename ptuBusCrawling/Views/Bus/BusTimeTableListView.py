@@ -1,32 +1,17 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from ptuBusCrawling.Crawler import BusTimeTableParsing, BusTerminalParsing
+from ptuBusCrawling.Crawler import BusTimeTableParsing
 from ptuBusCrawling.Serializers import BusTimeTableSerializer
 from ptuBusCrawling.Models import BusTimeTableModel
 
 class BusTimeTableListView(APIView):
     def get(self, request):
-        count = 1
-        BusTimeTableModel.objects.all().delete()
-        Bus = BusTerminalParsing()
-        data = BusTimeTableParsing(Bus.parsing()).parsing()
-        for table in data:
-            BusTimeTableModel(
-                id = count,
-                startStationName=table['startStationName'],
-                startStationID = table['startStationID'],
-                endStationName =table['endStationName'],
-                endStationID = table['endStationID'],
-                wasteTime = table['wasteTime'],
-                normalFare = table['normalFare'],
-                specialFare = table['specialFare'],
-                nightFare = table['nightFare'],
-                schedule = table['schedule'],
-                nightschedule = table['nightschedule'],
-                isExpress = table['isExpress'],
-                ).save()
-            count += 1
-        snippets = BusTimeTableModel.objects.all()
-        serializer = BusTimeTableSerializer(snippets, many=True)
+        try:
+            BusTimeTableModel.objects.all().delete()
+        except ConnectionResetError:
+            BusTimeTableModel.objects.all().delete()
+        BusTimeTableParsing().parsing()
+        data = BusTimeTableModel.objects.all()
+        serializer = BusTimeTableSerializer(data, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)

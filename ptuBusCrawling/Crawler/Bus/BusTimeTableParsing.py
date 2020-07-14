@@ -1,10 +1,11 @@
 import json
 from urllib import parse, request
 from ptuBusCrawling.Crawler.Util.SendSlcakMsg import SendSlackMeg
+from ptuBusCrawling.Models import BusTimeTableModel, BusTerminalModel
 
 class BusTimeTableParsing:
-    def __init__ (self, data):
-        self.pData = data
+    def __init__ (self):
+        self.pData = BusTerminalModel.objects.all()
         self.apiKey = 'mxl46U1g52x6aVOUX/p969Zbtq9EZmboho4Jp5WiUlQ'
         self.url = ['https://api.odsay.com/v1/api/intercityServiceTime?',
                     'https://api.odsay.com/v1/api/expressServiceTime?']
@@ -22,14 +23,6 @@ class BusTimeTableParsing:
     def cleanSchedule(self, schedule):
         replaceAll = schedule.replace("/", " ")
         return ''.join(replaceAll).split()
-
-    def makeDict(self, startStationID, startStationName, endStationID, endStationName, wasteTime, normalFare, specialFare ,nightFare,
-                 schedule, nightschedule, isExpress):
-        ListStr = ["startStationName", "startStationID", "endStationName", "endStationID", "wasteTime", "normalFare", "specialFare",
-                   "nightFare", "schedule", "nightschedule", "isExpress"]
-        dList = [startStationName, startStationID, endStationName, endStationID, wasteTime, normalFare, specialFare,
-                 nightFare, schedule ,nightschedule, isExpress]
-        return dict(zip(ListStr, dList))
 
     def checkError(self, data):
         if (('error' in data) == True):
@@ -52,49 +45,43 @@ class BusTimeTableParsing:
             return time
 
     def parsing(self):
-        temp = []
+        count = 1
+        specialFare = 0
+        nightschedule = '0'
         for pData in self.pData:
-            if pData['isExpress'] == 0:
+            if pData.isExpress == 0:
                 url = self.url[0]
                 special = 0
-            elif pData['isExpress'] == 1:
+            elif pData.isExpress == 1:
                 url = self.url[1]
                 special = 1
-            query = [('apiKey', self.apiKey), ('startStationID', pData['startStationID']),
-                     ('endStationID', pData['endStationID'])]
-
+            query = [('apiKey', self.apiKey), ('startStationID', pData.startStationID),
+                     ('endStationID', pData.endStationID)]
             data = self.openURL(url, query)
             rDD = self.checkError(json.loads(data))
-            startStationID = pData['startStationID']
-            startStationName = pData['startStationName']
-            endStationName = pData["endStationName"]
-            endStationID = pData["endStationID"]
-            wasteTime = self.min2hour(rDD["result"]["station"][0]['wasteTime'])
-            normalFare = rDD["result"]["station"][0]['normalFare']
-            isExpress = pData['isExpress']
-            if (special == 0):
-                specialFare = 0
-            elif (special == 1):
-                specialFare = rDD["result"]["station"][0]['specialFare']
-            nightFare = rDD["result"]["station"][0]['nightFare']
             schedules = self.cleanSchedule(rDD["result"]["station"][0]['schedule'])
-            if (rDD["result"]["station"][0]['nightSchedule'] == ""):
-                nightschedule = '0'
-            else:
+
+            if (special == 1):
+                specialFare = rDD["result"]["station"][0]['specialFare']
+
+            if rDD["result"]["station"][0]['nightSchedule'] != "":
                 nightschedule = rDD["result"]["station"][0]['nightSchedule']
+
             for schedule in schedules:
-                temp.append(self.makeDict(startStationID,
-                                          startStationName,
-                                          endStationID,
-                                          endStationName,
-                                          wasteTime,
-                                          normalFare,
-                                          specialFare,
-                                          nightFare,
-                                          schedule,
-                                          nightschedule,
-                                          isExpress))
-        return temp
+                BusTimeTableModel(id = count,
+                                  startStationName = pData.startStationName,
+                                  startStationID =  pData.startStationID,
+                                  endStationName = pData.endStationName,
+                                  endStationID = pData.endStationID,
+                                  wasteTime = self.min2hour(rDD["result"]["station"][0]['wasteTime']),
+                                  normalFare = rDD["result"]["station"][0]['normalFare'],
+                                  specialFare = specialFare,
+                                  nightFare = rDD["result"]["station"][0]['nightFare'],
+                                  schedule = schedule,
+                                  nightschedule = nightschedule,
+                                  isExpress = pData.isExpress
+                                  ).save()
+                count += 1
 
 if __name__ == "__main__":
     if __package__ is None:
@@ -105,3 +92,4 @@ if __name__ == "__main__":
     else:
         from .BusTerminalParsing import BusTerminalParsing
     print (BusTimeTableParsing(BusTerminalParsing().parsing()).parsing())
+
