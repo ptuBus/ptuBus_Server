@@ -12,7 +12,11 @@ class SubwayParsing:
                       ('sepExpressTime', 1)]
         self.stationNm = ""
         self.dailyType = ['OrdList', 'SatList', 'SunList']
+        #                    0           1          2
+
         self.wayCode = ['up', 'down']
+        #                 0      1
+
         self.msg = SendSlackMeg()
 
     def makeURL(self):
@@ -66,7 +70,8 @@ class SubwayParsing:
             for wayCode in self.wayCode:
                 jData = rDD["result"][dailyType][wayCode]["time"]
                 for i in range(len(jData)):
-                    typeList.extend(self.sortDict(jData[i], dailyType, wayCode))
+                    typeList.extend(self.sortDict(jData[i], self.dailyType.index(dailyType),
+                                                  self.wayCode.index(wayCode)))
             temp.append(typeList)
         return temp
 

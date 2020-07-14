@@ -2,6 +2,7 @@ from urllib import parse, request
 import json
 from ptuBusCrawling.Crawler.Util.SendSlcakMsg import SendSlackMeg
 import sys
+from ptuBusCrawling.Models import TrainStationModel
 
 class TrainStationParsing:
     def __init__(self):
@@ -43,15 +44,21 @@ class TrainStationParsing:
             return data
 
     def parsing(self):
-        temp = []
+        count = 1
         data = self.openURL()
         rDD = self.checkError(json.loads(data))
         startStationID = rDD["result"][0]["stationID"]
         startStationName = rDD["result"][0]["stationName"]
         results = rDD["result"][0]['arrivalTerminals']
         for result in results:
-            temp.append(self.makeDict(startStationName, startStationID, result['stationName'], result['stationID']))
-        return temp
+            TrainStationModel(
+                id = count,
+                startStationName = startStationName,
+                startStationID = startStationID,
+                endStationName = result['stationName'],
+                endStationID = result['stationID']
+            ).save()
+            count += 1
 
 if __name__ == "__main__":
     print (TrainStationParsing().parsing())

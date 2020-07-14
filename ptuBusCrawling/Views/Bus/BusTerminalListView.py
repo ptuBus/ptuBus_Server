@@ -7,19 +7,11 @@ from ptuBusCrawling.Models import BusTerminalModel
 
 class BusTerminalListView(APIView):
     def get(self, request):
-        count = 1
-        BusTerminalModel.objects.all().delete()
-        data = BusTerminalParsing().parsing()
-        for table in data:
-            BusTerminalModel(
-                id = count,
-                startStationName=table['startStationName'],
-                startStationID = table['startStationID'],
-                endStationName=table['endStationName'],
-                endStationID = table['endStationID'],
-                isExpress = int(table['isExpress']),
-                ).save()
-            count += 1
-        snippets = BusTerminalModel.objects.all()
-        serializer = BusTerminalSerializer(snippets, many=True)
+        try:
+            BusTerminalModel.objects.all().delete()
+        except ConnectionResetError:
+            BusTerminalModel.objects.all().delete()
+        BusTerminalParsing().parsing()
+        data = BusTerminalModel.objects.all()
+        serializer = BusTerminalSerializer(data, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)

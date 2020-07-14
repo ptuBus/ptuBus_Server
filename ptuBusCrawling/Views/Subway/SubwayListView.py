@@ -8,7 +8,10 @@ from ptuBusCrawling.Models import SubwayTimeTableModel
 class SubwayListView(APIView):
     def get(self, request):
         count = 1
-        SubwayTimeTableModel.objects.all().delete()
+        try:
+            SubwayTimeTableModel.objects.all().delete()
+        except ConnectionResetError:
+            SubwayTimeTableModel.objects.all().delete()
         data = SubwayParsing().parsing()
         for dailyList in data:
             for table in dailyList:
@@ -22,6 +25,6 @@ class SubwayListView(APIView):
                     isExpress = int(table['isExpress']),
                     ).save()
                 count += 1
-        snippets = SubwayTimeTableModel.objects.all()
-        serializer = SubwayTimeTableSerializer(snippets, many=True)
+        data = SubwayTimeTableModel.objects.all()
+        serializer = SubwayTimeTableSerializer(data, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)

@@ -7,18 +7,11 @@ from ptuBusCrawling.Models import TrainStationModel
 
 class TrainStationListView(APIView):
     def get(self, request):
-        count = 1
-        TrainStationModel.objects.all().delete()
-        data = TrainStationParsing().parsing()
-        for table in data:
-            TrainStationModel(
-                id = count,
-                startStationName = table['startStationName'],
-                startStationID = table['startStationID'],
-                endStationName=table['endStationName'],
-                endStationID = table['endStationID'],
-            ).save()
-            count += 1
-        snippets = TrainStationModel.objects.all()
-        serializer = TrainStationSerializer(snippets, many=True)
+        try:
+            TrainStationModel.objects.all().delete()
+        except ConnectionResetError:
+            TrainStationModel.objects.all().delete()
+        TrainStationParsing().parsing()
+        data = TrainStationModel.objects.all()
+        serializer = TrainStationSerializer(data, many=True)
         return Response(serializer.data, status = status.HTTP_201_CREATED)

@@ -23,6 +23,6 @@ class SchoolBusListView(APIView):
                     upDownTypeCode = table['upDownTypeCode'],
                 ).save()
                 count += 1
-        snippets = SchoolBusTimeTableModel.objects.all()
-        serializer = SchoolBusTimeTableSerializer(snippets, many=True)
+        data = SchoolBusTimeTableModel.objects.all()
+        serializer = SchoolBusTimeTableSerializer(data, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
