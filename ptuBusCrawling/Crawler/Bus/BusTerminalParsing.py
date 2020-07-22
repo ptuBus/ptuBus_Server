@@ -1,7 +1,7 @@
 import json
 from urllib import parse, request
 from ptuBusCrawling.Crawler.Util.SendSlcakMsg import SendSlackMeg
-from ptuBusCrawling.Models import BusTerminalModel
+from ptuBusServer.Models import BusTerminalModel
 import sys
 
 class BusTerminalParsing:

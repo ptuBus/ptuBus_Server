@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ptuBusCrawling.Models import SchoolBusTimeTableModel
+from ptuBusServer.Models import SchoolBusTimeTableModel
 
 class SchoolBusTimeTableSerializer(serializers.ModelSerializer):
     class Meta:

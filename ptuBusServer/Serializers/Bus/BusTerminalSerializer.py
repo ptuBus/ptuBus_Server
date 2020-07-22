@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ptuBusCrawling.Models import BusTerminalModel
+from ptuBusServer.Models import BusTerminalModel
 
 class BusTerminalSerializer(serializers.ModelSerializer):
     class Meta:

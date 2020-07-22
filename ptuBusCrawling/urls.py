@@ -1,10 +1,5 @@
 from django.urls import path
-from .Views.Subway.SubwayListView import SubwayListView
-from .Views.SchoolBus.SchoolBusListView import SchoolBusListView
-from .Views.Bus.BusTerminalListView import BusTerminalListView
-from .Views.Bus.BusTimeTableListView import BusTimeTableListView
-from .Views.Train.TrainStationListView import TrainStationListView
-from .Views.Train.TrainTimeTableListView import TrainTimeTableListView
+from ptuBusCrawling.Views import *
 
 urlpatterns = [
     path('Subway/', SubwayListView.as_view()),

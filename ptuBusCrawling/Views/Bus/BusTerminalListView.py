@@ -2,8 +2,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from ptuBusCrawling.Crawler import BusTerminalParsing
-from ptuBusCrawling.Serializers import BusTerminalSerializer
-from ptuBusCrawling.Models import BusTerminalModel
+from ptuBusServer.Serializers import BusTerminalSerializer
+from ptuBusServer.Models import BusTerminalModel
 
 class BusTerminalListView(APIView):
     def get(self, request):
