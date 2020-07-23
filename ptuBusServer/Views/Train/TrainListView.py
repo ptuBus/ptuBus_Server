@@ -9,20 +9,19 @@ class TrainListView(generics.ListAPIView):
         queryset = TrainTimeTableModel.objects.all()
 
         runDay = self.request.query_params.get('runDay', None)
-        endStationName = self.request.query_params.get('endStationName', None)
+        endStationID = self.request.query_params.get('endStationID', None)
         trainClass = self.request.query_params.get('trainClass', None)
         arrivalTime = self.request.query_params.get('arrivalTime', None)
 
-        if runDay and endStationName and trainClass and arrivalTime is not None:
-            queryset = queryset.filter(runDay=runDay, endStationName=endStationName,
+        if runDay and endStationID and trainClass and arrivalTime is not None:
+            queryset = queryset.filter(runDay=runDay, endStationID=endStationID,
                                        trainClass=trainClass, arrivalTime__startswith=arrivalTime)
-        elif runDay and endStationName and trainClass is not None:
-            queryset = queryset.filter(runDay=runDay, endStationName=endStationName,
+        elif runDay and endStationID and trainClass is not None:
+            queryset = queryset.filter(runDay=runDay, endStationID=endStationID,
                                        trainClass=trainClass)
-        elif runDay and endStationName and arrivalTime is not None:
-
-            queryset = queryset.filter(runDay=runDay, endStationName=endStationName,
+        elif runDay and endStationID and arrivalTime is not None:
+            queryset = queryset.filter(runDay=runDay, endStationID=endStationID,
                                        arrivalTime__startswith=arrivalTime)
-        elif runDay and endStationName is not None:
-            queryset = queryset.filter(runDay=runDay, endStationName=endStationName)
+        elif runDay and endStationID is not None:
+            queryset = queryset.filter(runDay=runDay, endStationID=endStationID)
         return queryset

@@ -16,9 +16,9 @@ urlpatterns = [
     re_path(r'^schoolBus/(?P<startStationID>.+)(&P<endStationID>.+)(&P<upDownTypeCode>.+)(&P<arrTime>\d+)/$', SchoolBusListView.as_view()),
     re_path(r'^schoolBus/(?P<startStationID>.+)(&P<endStationID>.+)(&P<upDownTypeCode>.+)/$', SchoolBusListView.as_view()),
     re_path(r'^schoolBus/$', SchoolBusListView.as_view()),
-    re_path(r'^train/(?P<runDay>.+)(&P<endStationName>[ㄱ-힣]+)(&P<trainClass>[1-3]+)(&P<arrivalTime>\d+)/$', TrainListView.as_view()),
-    re_path(r'^train/(?P<runDay>.+)(&P<endStationName>[ㄱ-힣]+)(&P<trainClass>[1-3]+)/$', TrainListView.as_view()),
-    re_path(r'^train/(?P<runDay>.+)(&P<endStationName>[ㄱ-힣]+)(&P<arrivalTime>\d)/$', TrainListView.as_view()),
-    re_path(r'^train/(?P<runDay>.+)(&P<endStationName>[ㄱ-힣]+)/$', TrainListView.as_view()),
+    re_path(r'^train/(?P<runDay>.+)(&P<endStationID>.+)(&P<trainClass>[1-3]+)(&P<arrivalTime>\d+)/$', TrainListView.as_view()),
+    re_path(r'^train/(?P<runDay>.+)(&P<endStationID>.+)(&P<trainClass>[1-3]+)/$', TrainListView.as_view()),
+    re_path(r'^train/(?P<runDay>.+)(&P<endStationID>.+)(&P<arrivalTime>\d)/$', TrainListView.as_view()),
+    re_path(r'^train/(?P<runDay>.+)(&P<endStationID>.+)/$', TrainListView.as_view()),
     re_path(r'^train/$', TrainListView.as_view()),
 ]
