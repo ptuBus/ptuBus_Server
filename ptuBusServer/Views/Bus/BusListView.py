@@ -13,7 +13,7 @@ class BusListView(generics.ListAPIView):
         schedule = self.request.query_params.get('schedule', None)
 
         if startStationID and endStationID and schedule is not None:
-            queryset = queryset.filter(startStationID=startStationID, endStationID=endStationID, schedule=schedule)
+            queryset = queryset.filter(startStationID=startStationID, endStationID=endStationID, schedule__startswith=schedule)
         elif startStationID and endStationID is not None:
-            queryset = queryset.filter(startStationID=startStationID, endStationID=endStationID)
+            queryset = queryset.filter(startStationID=startStationID, endStationID__startswith=endStationID)
         return queryset
