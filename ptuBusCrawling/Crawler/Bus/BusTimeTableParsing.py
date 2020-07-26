@@ -92,7 +92,3 @@ if __name__ == "__main__":
     else:
         from .BusTerminalParsing import BusTerminalParsing
     print (BusTimeTableParsing(BusTerminalParsing().parsing()).parsing())
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/dev
