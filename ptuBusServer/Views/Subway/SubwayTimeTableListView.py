@@ -2,7 +2,7 @@ from ptuBusServer.Serializers import SubwayTimeTableSerializer
 from ptuBusServer.Models import SubwayTimeTableModel
 from rest_framework import generics
 
-class SubwayListView(generics.ListAPIView):
+class SubwayTimeTableListView(generics.ListAPIView):
     serializer_class = SubwayTimeTableSerializer
 
     def get_queryset(self):

@@ -2,7 +2,7 @@ from ptuBusServer.Serializers import SchoolBusTimeTableSerializer
 from ptuBusServer.Models import SchoolBusTimeTableModel
 from rest_framework import generics
 
-class SchoolBusListView(generics.ListAPIView):
+class SchoolBusTimeTableListView(generics.ListAPIView):
     serializer_class = SchoolBusTimeTableSerializer
 
     def get_queryset(self):
