@@ -1,7 +1,7 @@
 import json
 from urllib import parse, request
 from ptuBusCrawling.Crawler.Util.SendSlcakMsg import SendSlackMeg
-from ptuBusCrawling.Models import BusTimeTableModel, BusTerminalModel
+from ptuBusServer.Models import BusTimeTableModel, BusTerminalModel
 
 class BusTimeTableParsing:
     def __init__ (self):
@@ -92,4 +92,7 @@ if __name__ == "__main__":
     else:
         from .BusTerminalParsing import BusTerminalParsing
     print (BusTimeTableParsing(BusTerminalParsing().parsing()).parsing())
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/dev
