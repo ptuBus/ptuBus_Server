@@ -15,5 +15,5 @@ class BusTimeTableListView(generics.ListAPIView):
         if startStationID and endStationID and schedule is not None:
             queryset = queryset.filter(startStationID=startStationID, endStationID=endStationID, schedule__startswith=schedule)
         elif startStationID and endStationID is not None:
-            queryset = queryset.filter(startStationID=startStationID, endStationID__startswith=endStationID)
+            queryset = queryset.filter(startStationID=startStationID, endStationID=endStationID)
         return queryset
