@@ -14,7 +14,7 @@ class SubwayTimeTableListView(generics.ListAPIView):
         upDownTypeCode = self.request.query_params.get('upDownTypeCode', None)
         isExpress = self.request.query_params.get('isExpress', None)
         schedule = self.request.query_params.get('schedule', None)
-        self.checkNecessaryParams(dailyTypeCode, upDownTypeCode, isExpress)
+        self.checkNecessaryParams(dailyTypeCode, upDownTypeCode)
 
 
         if dailyTypeCode and upDownTypeCode and isExpress and schedule is not None:
