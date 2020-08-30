@@ -32,13 +32,11 @@ class SubwayTimeTableListView(generics.ListAPIView):
                 {"startStationID" : dailyTypeCode, "upDownTypeCode" : upDownTypeCode, "isExpress" : isExpress, "schedule" : schedule}},
                                        status_code=status.HTTP_400_BAD_REQUEST)
 
-    def checkNecessaryParams(self, dailyTypeCode, upDownTypeCode, isExpress):
-        if not dailyTypeCode and not upDownTypeCode and not isExpress:
-            raise ptuBusErrorExcpetion(detail={"error": "dailyTypeCode, upDownTypeCode, isExpress가 입력되지 않았습니다.", "code": "-2"},
+    def checkNecessaryParams(self, dailyTypeCode, upDownTypeCode):
+        if not dailyTypeCode and not upDownTypeCode:
+            raise ptuBusErrorExcpetion(detail={"error": "dailyTypeCode, upDownTypeCode가 입력되지 않았습니다.", "code": "-2"},
                                    status_code=status.HTTP_400_BAD_REQUEST)
         elif not dailyTypeCode:
             raise ptuBusErrorExcpetion(detail={"error": "dailyTypeCode가 입력되지 않았습니다.", "code" : "-1"}, status_code=status.HTTP_400_BAD_REQUEST)
         elif not upDownTypeCode:
             raise ptuBusErrorExcpetion(detail={"error": "upDownTypeCode가 입력되지 않았습니다.", "code" : "-1"}, status_code=status.HTTP_400_BAD_REQUEST)
-        elif not isExpress:
-            raise ptuBusErrorExcpetion(detail={"error": "isExpress가 입력되지 않았습니다.", "code" : "-1"}, status_code=status.HTTP_400_BAD_REQUEST)
