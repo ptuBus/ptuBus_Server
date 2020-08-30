@@ -9,9 +9,9 @@ class TrainTimeTableModel(models.Model):
     railName = models.CharField(max_length = 100)
     trainClass = models.CharField(max_length = 100)
     departureTime = models.CharField(max_length = 100)
-    arrivalTime = models.CharField(max_length = 100)
+    schedule = models.CharField(max_length = 100)
     wasteTime = models.CharField(max_length = 100)
-    runDay = models.CharField(max_length = 100)
+    dailyTypeCode = models.CharField(max_length = 100)
 
     class Meta:
         db_table = 'TrainTimeTable'
