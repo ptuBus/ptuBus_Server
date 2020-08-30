@@ -89,4 +89,5 @@ local_settings.py
 .env
 db.sqlite3
 ptuBusCrawling/migrations/
+ptuBusServer/migrations/
 setting.json

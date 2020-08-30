@@ -18,7 +18,7 @@ class SchoolBusTimeTableListView(generics.ListAPIView):
 
         if startStationID and endStationID and upDownTypeCode and schedule is not None:
             queryset = queryset.filter(startStationID=startStationID, endStationID=endStationID,
-                                       upDownTypeCode=upDownTypeCode, arrTime__startswith=schedule)
+                                       upDownTypeCode=upDownTypeCode, schedule__startswith=schedule)
         elif startStationID and endStationID and upDownTypeCode is not None:
             queryset = queryset.filter(startStationID=startStationID, endStationID=endStationID,
                                        upDownTypeCode=upDownTypeCode)
