@@ -47,7 +47,7 @@ class SubwayParsing:
             min = ''.join((jData['expList'])).split()
             for j in range(len(min)):
                 temp.append(self.makeDict(hour, min[j], dailyType, wayCode, 1))
-        return sorted(temp, key=itemgetter('arrTime'))
+        return sorted(temp, key=itemgetter('schedule'))
 
     def checkError(self, data):
         if (('error' in data) == True):
