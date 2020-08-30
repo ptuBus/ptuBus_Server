@@ -29,4 +29,3 @@ class SubwayTimeTableListView(generics.ListAPIView):
             raise ptuBusErrorExcpetion(detail={"error": "파라메터 값이 잘못되었습니다.", "code" : "-3" ,"parameter" :
                 {"startStationID" : dailyTypeCode, "upDownTypeCode" : upDownTypeCode, "isExpress" : isExpress, "schedule" : schedule}},
                 status_code=status.HTTP_400_BAD_REQUEST)
-
