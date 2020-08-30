@@ -21,7 +21,7 @@ class SubwayListView(APIView):
                     endStationName=table['endStationName'],
                     dailyTypeCode=table['dailyTypeCode'],
                     upDownTypeCode=table['upDownTypeCode'],
-                    arrTime = table['arrTime'],
+                    schedule = table['schedule'],
                     isExpress = int(table['isExpress']),
                     ).save()
                 count += 1

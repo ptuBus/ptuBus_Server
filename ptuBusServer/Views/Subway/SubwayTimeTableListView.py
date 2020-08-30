@@ -18,9 +18,9 @@ class SubwayTimeTableListView(generics.ListAPIView):
 
 
         if dailyTypeCode and upDownTypeCode and isExpress and schedule is not None:
-            queryset = queryset.filter(dailyTypeCode=dailyTypeCode, upDownTypeCode=upDownTypeCode, isExpress=isExpress, arrTime__startswith=schedule)
+            queryset = queryset.filter(dailyTypeCode=dailyTypeCode, upDownTypeCode=upDownTypeCode, isExpress=isExpress, schedule__startswith=schedule)
         elif dailyTypeCode and upDownTypeCode and schedule is not None:
-            queryset = queryset.filter(dailyTypeCode=dailyTypeCode, upDownTypeCode=upDownTypeCode, arrTime__startswith=schedule)
+            queryset = queryset.filter(dailyTypeCode=dailyTypeCode, upDownTypeCode=upDownTypeCode, schedule__startswith=schedule)
         elif dailyTypeCode and upDownTypeCode and isExpress is not None:
             queryset = queryset.filter(dailyTypeCode=dailyTypeCode, upDownTypeCode=upDownTypeCode, isExpress=isExpress)
         elif dailyTypeCode and upDownTypeCode is not None:

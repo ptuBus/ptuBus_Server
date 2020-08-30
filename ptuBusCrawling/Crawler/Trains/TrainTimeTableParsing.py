@@ -54,9 +54,9 @@ class TrainTimeTableParsing:
                                     railName = result['railName'],
                                     trainClass = self.trainTypeCode.index(result['trainClass']),
                                     departureTime = result['departureTime'],
-                                    arrivalTime = result['arrivalTime'],
+                                    schedule = result['arrivalTime'],
                                     wasteTime = result['wasteTime'],
-                                    runDay = self.dailyTypeCode.index(result['runDay'])
+                                    dailyTypeCode = self.dailyTypeCode.index(result['runDay'])
                 ).save()
                 count += 1
 

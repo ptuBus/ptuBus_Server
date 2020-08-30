@@ -19,7 +19,7 @@ class SchoolBusListView(APIView):
                     startStationID = table['startStationID'],
                     endStationName=table['endStationName'],
                     endStationID = table['endStationID'],
-                    arrTime=table['arrTime'],
+                    schedule=table['schedule'],
                     upDownTypeCode = table['upDownTypeCode'],
                 ).save()
                 count += 1
