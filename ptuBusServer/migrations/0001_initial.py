@@ -107,4 +107,8 @@ class Migration(migrations.Migration):
                 'db_table': 'TrainTimeTable',
             },
         ),
+<<<<<<< HEAD
     ]
+=======
+    ]
+>>>>>>> a98fa046bc82c312f9b34e99011f9b973ce348bb
