@@ -27,7 +27,7 @@ class SchoolParsing:
         temp = []
         toSchool = []
         toSubway = []
-        ListStr = ["startStationName", "startStationID", "endStationName", "endStationID", "arrTime", "upDownTypeCode"]
+        ListStr = ["startStationName", "startStationID", "endStationName", "endStationID", "schedule", "upDownTypeCode"]
         for i in range(len(pDataList)):
             #상행
             if i == 0:

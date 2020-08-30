@@ -1,6 +1,6 @@
 from .Bus.BusTerminalListView import BusTerminalListView
 from .Bus.BusTimeTableListView import BusTimeTableListView
-from .SchoolBus.SchoolBusTimeTableListView import SchoolBusTimeTableListView
+from .schoolBus.SchoolBusTimeTableListView import SchoolBusTimeTableListView
 from .Subway.SubwayTimeTableListView import SubwayTimeTableListView
 from .Train.TrainStationListView import TrainStationListView
 from .Train.TrainTimeTableListView import TrainTimeTableListView
