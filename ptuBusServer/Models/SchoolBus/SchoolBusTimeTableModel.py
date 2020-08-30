@@ -6,7 +6,7 @@ class SchoolBusTimeTableModel(models.Model):
     startStationID = models.CharField(max_length=100)
     endStationName = models.CharField(max_length=100)
     endStationID = models.CharField(max_length=100)
-    arrTime = models.CharField(max_length=100)
+    schedule = models.CharField(max_length=100)
     upDownTypeCode = models.CharField(max_length=20)
 
     class Meta:

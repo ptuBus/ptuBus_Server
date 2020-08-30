@@ -6,7 +6,7 @@ class SubwayTimeTableModel(models.Model):
     endStationName = models.CharField(max_length = 100)
     dailyTypeCode = models.CharField(max_length = 100)
     upDownTypeCode = models.CharField(max_length = 100)
-    arrTime = models.CharField(max_length = 100)
+    schedule = models.CharField(max_length = 100)
     isExpress = models.IntegerField()
 
     class Meta:

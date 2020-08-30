@@ -31,10 +31,10 @@ class SubwayParsing:
     def makeDict(self, hour, min, dailyType, wayCode, ifExp):
         startIndex = min.find('(')
         newWord = min[:startIndex]
-        ListStr = ["startStationName", "endStationName", "dailyTypeCode", "upDownTypeCode", "arrTime", "isExpress"]
-        arrTime = str(hour).zfill(2) + ":" + str(newWord)
+        ListStr = ["startStationName", "endStationName", "dailyTypeCode", "upDownTypeCode", "schedule", "isExpress"]
+        schedule = str(hour).zfill(2) + ":" + str(newWord)
         endStation = str(min[startIndex + 1: -1])
-        dList = [self.stationNm, endStation, dailyType, wayCode, arrTime, ifExp]
+        dList = [self.stationNm, endStation, dailyType, wayCode, schedule, ifExp]
         return dict(zip(ListStr, dList))
 
     def sortDict(self, jData, dailyType, wayCode):
@@ -47,7 +47,7 @@ class SubwayParsing:
             min = ''.join((jData['expList'])).split()
             for j in range(len(min)):
                 temp.append(self.makeDict(hour, min[j], dailyType, wayCode, 1))
-        return sorted(temp, key=itemgetter('arrTime'))
+        return sorted(temp, key=itemgetter('schedule'))
 
     def checkError(self, data):
         if (('error' in data) == True):
