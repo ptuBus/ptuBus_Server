@@ -8,7 +8,7 @@ import json
 
 class SubwayStationListView(APIView):
     def get(self, request):
-        with open('data.json') as json_file:
+        with open('ptuBusServer/Views/Subway/data.json') as json_file:
             json_data = json.load(json_file)
         return JsonResponse(json_data)
 
