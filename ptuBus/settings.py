@@ -48,8 +48,8 @@ INSTALLED_APPS = [
     'ptuBusServer',
     'ptuBusCrawling',
     #Django Library
-    'rest_framework'
-
+    'rest_framework',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [

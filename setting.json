@@ -3,7 +3,7 @@
     "NAME" : "ptubus",
     "USER" : "slg1119",
     "PASSWORD" : "!@Booster1",
-    "HOST" : "ptubus.com",
+    "HOST" : "ec2-13-125-247-115.ap-northeast-2.compute.amazonaws.com",
     "PORT" : "3306"
   }
 }
