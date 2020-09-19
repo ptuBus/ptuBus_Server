@@ -17,13 +17,13 @@ class TrainTimeTableListView(generics.ListAPIView):
 
         if dailyTypeCode and endStationID and trainClass and schedule is not None:
             queryset = queryset.filter(dailyTypeCode=dailyTypeCode, endStationID=endStationID,
-                                       trainClass=trainClass, arrivalTime__startswith=schedule)
+                                       trainClass=trainClass, schedule__startswith=schedule)
         elif dailyTypeCode and endStationID and trainClass is not None:
             queryset = queryset.filter(dailyTypeCode=dailyTypeCode, endStationID=endStationID,
                                        trainClass=trainClass)
         elif dailyTypeCode and endStationID and schedule is not None:
             queryset = queryset.filter(dailyTypeCode=dailyTypeCode, endStationID=endStationID,
-                                       arrivalTime__startswith=schedule)
+                                       schedule__startswith=schedule)
         elif dailyTypeCode and endStationID is not None:
             queryset = queryset.filter(dailyTypeCode=dailyTypeCode, endStationID=endStationID)
         if queryset:
