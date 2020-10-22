@@ -52,11 +52,12 @@ class BusTerminalParsing:
                     startStationName = rDD["result"][i]['stationName']
                     results = rDD["result"][i]['destinationTerminals']
                     for result in results:
+                        endStationName = result['stationName']
                         BusTerminalModel(
                             id = count,
                             startStationName = startStationName,
                             startStationID = startStationID,
-                            endStationName = result['stationName'],
+                            endStationName = endStationName[endStationName.find('/') + 1:],
                             endStationID = result['stationID'],
                             isExpress = int(isExpress)
                         ).save()
