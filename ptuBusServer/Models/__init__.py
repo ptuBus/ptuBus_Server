@@ -5,4 +5,5 @@ from .Subway.SubwayLineModel import SubwayLineModel
 from .Subway.SubwayStationModel import SubwayStationModel
 from .Train.TrainStationModel import TrainStationModel
 from .Train.TrainTimeTableModel import TrainTimeTableModel
+from .AppDB.AppDBModel import AppDBModel
 

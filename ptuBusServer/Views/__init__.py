@@ -5,4 +5,6 @@ from .Subway.SubwayStationListView import SubwayStationListView
 from .Subway.SubwayLineListView import SubwayLineListView
 from .Train.TrainStationListView import TrainStationListView
 from .Train.TrainTimeTableListView import TrainTimeTableListView
+from .AppDB.AppDBView import AppDBView
+from .AppDB.FileDownloadListView import FileDownloadListView
 from .ptuBusErrorExcpetion import ptuBusErrorExcpetion

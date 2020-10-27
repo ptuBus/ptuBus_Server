@@ -16,5 +16,7 @@ urlpatterns = [
     re_path(r'^train/(?P<runDay>.+)(&P<endStationID>.+)(&P<schedule>\d)/$', TrainTimeTableListView.as_view()),
     re_path(r'^train/(?P<runDay>.+)(&P<endStationID>.+)/$', TrainTimeTableListView.as_view()),
     re_path(r'^train/$', TrainTimeTableListView.as_view()),
-    path('train/station/', TrainStationListView.as_view())
+    path('train/station/', TrainStationListView.as_view()),
+    path('app/version', AppDBView.as_view()),
+    path('app/download', FileDownloadListView.as_view())
 ]

@@ -7,4 +7,6 @@ urlpatterns = [
     path('bustimetable/', BusTimeTableListView.as_view()),
     path('trainstation/', TrainStationListView.as_view()),
     path('traintimetable/', TrainTimeTableListView.as_view()),
+    path('sqlite/', sqliteView.as_view()),
+
 ]
