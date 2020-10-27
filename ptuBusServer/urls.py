@@ -2,12 +2,8 @@ from django.urls import re_path, path
 from .Views import *
 
 urlpatterns = [
-    # re_path(r'^subway/(?P<dailyTypeCode>[0-2]+)(&P<upDownTypeCode>[0-1]+)(&P<isExpress>[0-1]+)(&P<schedule>\d)/$', SubwayTimeTableListView.as_view()),
-    # re_path(r'^subway/(?P<dailyTypeCode>[0-2]+)(&P<upDownTypeCode>[0-1]+)(&P<schedule>[0-1]+)/$', SubwayTimeTableListView.as_view()),
-    # re_path(r'^subway/(?P<dailyTypeCode>[0-2]+)(&P<upDownTypeCode>[0-1]+)(&P<isExpress>[0-1]+)/$', SubwayTimeTableListView.as_view()),
-    # re_path(r'^subway/(?P<dailyTypeCode>[0-2]+)(&P<upDownTypeCode>[0-1]+)/$', SubwayTimeTableListView.as_view()),
-    # re_path(r'^subway/$', SubwayTimeTableListView.as_view()),
-    # path('subway/station/', SubwayStationListView.as_view()),
+    path('subway/line/', SubwayLineListView.as_view()),
+    path('subway/station/', SubwayStationListView.as_view()),
     re_path(r'^bus/(?P<startStationID>.+)(&P<endStationID>.+)(&P<schedule>\d+)/$', BusTimeTableListView.as_view()),
     re_path(r'^bus/(?P<startStationID>.+)(&P<endStationID>.+)/$', BusTimeTableListView.as_view()),
     re_path(r'^bus/$', BusTimeTableListView.as_view()),
@@ -20,5 +16,7 @@ urlpatterns = [
     re_path(r'^train/(?P<runDay>.+)(&P<endStationID>.+)(&P<schedule>\d)/$', TrainTimeTableListView.as_view()),
     re_path(r'^train/(?P<runDay>.+)(&P<endStationID>.+)/$', TrainTimeTableListView.as_view()),
     re_path(r'^train/$', TrainTimeTableListView.as_view()),
-    path('train/station/', TrainStationListView.as_view())
+    path('train/station/', TrainStationListView.as_view()),
+    path('app/version', AppDBView.as_view()),
+    path('app/download', FileDownloadListView.as_view())
 ]

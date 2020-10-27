@@ -5,3 +5,4 @@ from .Subway.SubwayLineSerializer import SubwayLineSerializer
 from .Subway.SubwayStationSerializer import SubwayStationSerializer
 from .Train.TrainStationSerializer import TrainStationSerializer
 from .Train.TrainTimeTableSerializer import TrainTimeTableSerializer
+from .AppDB.AppDBSerializer import AppDBSerializer
