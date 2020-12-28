@@ -5,6 +5,7 @@ from ptuBusCrawling.Crawler import TrainStationParsing
 from ptuBusServer.Serializers import TrainStationSerializer
 from ptuBusServer.Models import TrainStationModel
 
+
 class TrainStationListView(APIView):
     def get(self, request):
         try:
@@ -14,4 +15,4 @@ class TrainStationListView(APIView):
         TrainStationParsing().parsing()
         data = TrainStationModel.objects.all()
         serializer = TrainStationSerializer(data, many=True)
-        return Response(serializer.data, status = status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)

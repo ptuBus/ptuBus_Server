@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class SchoolBusTimeTableModel(models.Model):
     id = models.IntegerField(primary_key=True)
     startStationName = models.CharField(max_length=100)
@@ -10,4 +11,4 @@ class SchoolBusTimeTableModel(models.Model):
     upDownTypeCode = models.CharField(max_length=20)
 
     class Meta:
-        db_table = 'SchoolBusTimeTable'
+        db_table = "SchoolBusTimeTable"

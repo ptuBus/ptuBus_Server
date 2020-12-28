@@ -14,11 +14,6 @@ import os
 import json
 import pathlib
 
-#Read Setting Json File
-file = pathlib.Path('setting.json')
-file_text = file.read_text(encoding='utf-8')
-SettingJson = json.loads(file_text)
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -30,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'dca60maqp89gcled+v42v28dx_2e7cs4b*j&n=mnj0!geuub39'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['==.elasticbeanstalk.com']
 
 
 # Application definition
@@ -89,12 +84,8 @@ WSGI_APPLICATION = 'ptuBus.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME' : SettingJson["DataBase"]["NAME"],
-        'USER' : SettingJson["DataBase"]["USER"],
-        'PASSWORD' : SettingJson["DataBase"]["PASSWORD"],
-        'HOST' : SettingJson["DataBase"]["HOST"],
-        'PORT' : SettingJson["DataBase"]["PORT"],
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

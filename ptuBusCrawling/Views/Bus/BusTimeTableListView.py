@@ -5,6 +5,7 @@ from ptuBusCrawling.Crawler import BusTimeTableParsing
 from ptuBusServer.Serializers import BusTimeTableSerializer
 from ptuBusServer.Models import BusTimeTableModel
 
+
 class BusTimeTableListView(APIView):
     def get(self, request):
         try:

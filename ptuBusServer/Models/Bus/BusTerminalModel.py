@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class BusTerminalModel(models.Model):
     id = models.IntegerField(primary_key=True)
     startStationName = models.CharField(max_length=100)
@@ -9,4 +10,4 @@ class BusTerminalModel(models.Model):
     isExpress = models.IntegerField()
 
     class Meta:
-        db_table = 'BusTerminal'
+        db_table = "BusTerminal"

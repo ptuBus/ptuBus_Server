@@ -5,6 +5,7 @@ from ptuBusCrawling.Crawler import SchoolParsing
 from ptuBusServer.Serializers import SchoolBusTimeTableSerializer
 from ptuBusServer.Models import SchoolBusTimeTableModel
 
+
 class SchoolBusListView(APIView):
     def get(self, request):
         count = 1
@@ -14,13 +15,13 @@ class SchoolBusListView(APIView):
         for dailyList in data:
             for table in dailyList:
                 SchoolBusTimeTableModel(
-                    id = count,
-                    startStationName=table['startStationName'],
-                    startStationID = table['startStationID'],
-                    endStationName=table['endStationName'],
-                    endStationID = table['endStationID'],
-                    schedule=table['schedule'],
-                    upDownTypeCode = table['upDownTypeCode'],
+                    id=count,
+                    startStationName=table["startStationName"],
+                    startStationID=table["startStationID"],
+                    endStationName=table["endStationName"],
+                    endStationID=table["endStationID"],
+                    schedule=table["schedule"],
+                    upDownTypeCode=table["upDownTypeCode"],
                 ).save()
                 count += 1
         data = SchoolBusTimeTableModel.objects.all()

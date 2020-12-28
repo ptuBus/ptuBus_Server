@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from ptuBusCrawling.Crawler import makeSqlite
 
+
 class sqliteView(APIView):
     def get(self, request):
         makeDataBase = makeSqlite()

@@ -5,6 +5,7 @@ from ptuBusCrawling.Crawler import BusTerminalParsing
 from ptuBusServer.Serializers import BusTerminalSerializer
 from ptuBusServer.Models import BusTerminalModel
 
+
 class BusTerminalListView(APIView):
     def get(self, request):
         try:
